@@ -11,7 +11,7 @@ app.get('/',(req,res)=>{
 
 })
 
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/static'));
 
 
 io.on('connection',(socket)=>{
