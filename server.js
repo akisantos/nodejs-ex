@@ -6,12 +6,12 @@ var http = require('http').createServer(app)
 var io = require('socket.io')(http)
 
 
-// app.get('/',(req,res)=>{
-//   res.sendFile(__dirname +'/public/index.html')
+app.get('/',(req,res)=>{
+  res.sendFile(__dirname +'/views/index.html')
 
-// })
+})
 
-app.use(express.static(__dirname + '/views'));
+// app.use(express.static(__dirname + '/views'));
 
 
 io.on('connection',(socket)=>{
