@@ -25,7 +25,37 @@
     <script src="https://cdn.plyr.io/3.5.10/plyr.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.plyr.io/3.5.10/plyr.css" />
 
-    <link rel="stylesheet" href="./static/style.css">
+    <!-- <link rel="stylesheet" href="/static/style.css"> -->
+
+    <style>
+        
+
+        .chatBoxWarp{
+            height: auto;
+            overflow-x: auto;
+            word-wrap: normal;
+        }
+
+
+        .anima{
+            animation: rung 0.75s linear;
+        }
+
+        @keyframes rung {
+            0%{
+                transform: translateX(-10px);
+            }
+            25%{
+                transform: translateX(5px);
+            }
+            50%{
+                transform: translateX(-5px);
+            }
+            100%{
+                transform: translateX(0);
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -50,9 +80,9 @@
 
             <div class="col-md-8 player">
 
-                <!-- <div class="plyr__video-embed" id="player">
+                <div class="plyr__video-embed" id="player">
                     <iframe
-                        src="https://drive.google.com/file/d/1in2Wzp6RN7bf_BgjF_ZyR-Vw6JyDZEbv/preview"
+                        src="https://player.vimeo.com/video/399572970"
                         allowfullscreen
                         allowtransparency
                         allow="autoplay"
@@ -61,15 +91,11 @@
 
 
 
-                </div> -->
+                </div>
 
-                <video poster="thumb.png" id="player" playsinline controls>
+                <!-- <video poster="thumb.png" id="player" playsinline controls>
                     <source src="video.mp4" type="video/mp4" />
-                    <!-- <source src="/path/to/video.webm" type="video/webm" /> -->
-                
-                    <!-- Captions are optional -->
-                    <!-- <track kind="captions" label="English captions" src="/path/to/captions.vtt" srclang="en" default /> -->
-                </video>
+                </video> -->
 
             </div>
             
@@ -106,6 +132,11 @@
 
         })
 
+        socket.on('HiRoom',(data)=>{
+
+            $('#info').text(data.autoChat)
+
+        })
 
         socket.on('info',(data)=>{
 

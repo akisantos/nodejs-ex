@@ -15,8 +15,9 @@ app.use(express.static(__dirname + '/static'));
 
 
 io.on('connection',(socket)=>{
-
+  var address = socket.handshake.address;
   socket.emit('HichatBox',{autoChat: 'Chào bạn mới vào phòng!'})
+  socket.broadcast.emit('HiRoom',{autoChat: address+' đã vào phòng!'})
   console.log('guest has connected')
 
 
@@ -36,7 +37,7 @@ io.on('connection',(socket)=>{
 
 
   socket.on('playerSync',(data)=>{
-    var address = socket.handshake.address;
+
     console.log('Video syncing...', data.time, data.isPlaying);
     socket.broadcast.emit('playerSync', {time: data.time, isPlaying: data.isPlaying})
 
